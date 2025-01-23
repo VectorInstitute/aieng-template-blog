@@ -1,29 +1,42 @@
-AI safety needs social scientists
-=================================
+AI Engineering article template
+===============================
 
-A call for social science researchers in long-term AI safety, to help understand how AI
-alignment schemes work when actual humans are involved.  Where this paper lives:
+Welcome to the AI Engineering article template! This template is designed to help you
+write blog posts for AI Engineering projects. It is based on the
+[Distill.pub](https://distill.pub) format, which is a great way to write articles
+that are both beautiful and interactive. Some helpful links to provide context on
+writing great distill articles are provided below:
 
-1. [Distill paper](https://distill.pub/2019/safety-needs-social-scientists)
-2. [Associated blog post](https://blog.openai.com/ai-safety-needs-social-scientists)
-
-## Distill links
-
-1. [Distill guide](https://distill.pub/guide) (unfortunately still using the old tag names).
-2. [Example post](https://github.com/distillpub/post--example) from which this was cloned.
+1. [Distill guide](https://distill.pub/guide/)
+2. [Communicating with Interactive Articles](https://distill.pub/2020/communicating-with-interactive-articles/)
 
 ## Setup
 
 How to set up for local editing:
 
-    # Clone repo
-    git clone https://github.com/distillpub/post--safety-needs-social-scientists
+### Clone repo
 
-    # Install node dependencies
-    cd post--safety-needs-social-scientists
+```bash
+    git@github.com:VectorInstitute/article-template.git
+```
+
+### Install node dependencies
+
+```bash
+    cd article-template
     npm install
+```
 
-    # Run development server
+### Run development server
+
+```bash
     npm run dev
+```
 
 Then view at http://localhost:8080.
+
+
+## Publishing
+
+The article should automatically be published via github pages. There is a github action
+workflow that will build the article and publish it.
