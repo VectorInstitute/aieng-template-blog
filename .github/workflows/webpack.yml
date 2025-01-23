@@ -36,9 +36,11 @@ jobs:
       uses: actions/configure-pages@v4
 
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
+        name: my-artifact
         path: dist
+        overwrite: true
 
     - name: Deploy to GitHub Pages
       id: deployment
