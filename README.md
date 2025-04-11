@@ -1,7 +1,7 @@
-AI Engineering article template
+AI Engineering blog template
 ===============================
 
-Welcome to the AI Engineering article template! This template is designed to help you
+Welcome to the AI Engineering blog template! This template is designed to help you
 write blog posts for AI Engineering projects. It is based on the
 [Distill.pub](https://distill.pub) format, which is a great way to write articles
 that are both beautiful and interactive. Some helpful links to provide context on
