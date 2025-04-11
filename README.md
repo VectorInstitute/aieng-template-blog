@@ -17,13 +17,13 @@ How to set up for local editing:
 ### Clone repo
 
 ```bash
-    git@github.com:VectorInstitute/article-template.git
+    git@github.com:VectorInstitute/aieng-template-blog.git
 ```
 
 ### Install node dependencies
 
 ```bash
-    cd article-template
+    cd aieng-template-blog
     npm install
 ```
 
