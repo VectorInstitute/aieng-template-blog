@@ -32,6 +32,76 @@ d-figure>figure {
     padding: 30px 0;
 }
 
+.subgrid {
+  grid-column: screen;
+  display: grid;
+  grid-template-columns: inherit;
+  grid-template-rows: inherit;
+  grid-column-gap: inherit;
+  grid-row-gap: inherit;
+}
+
+.fullscreen-diagram {
+  grid-column: screen;
+  width: 100%;
+  background: #f8f8fb;
+  padding: 10px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  contain: layout style;
+}
+
+/* Layout classes */
+.l-screen {
+  grid-column: screen;
+  width: 100%;
+}
+
+.l-body-outset {
+  grid-column: middle;
+}
+
+.l-page-outset {
+  grid-column: page;
+}
+
+.l-text,
+.l-body {
+  grid-column: text;
+}
+
+d-article {
+    contain: layout style;
+    overflow-x: hidden;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 2rem;
+    padding-left: 270px; /* Make room for the fixed sidebar */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1600px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+d-article > * {
+    grid-column: text;
+}
+
+d-figure {
+    contain: layout style; 
+}
+
+d-figure.base-grid {
+    grid-column: screen;
+    background: hsl(0, 0%, 97%);
+    padding: 20px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .pointer {
     position: absolute;
     width: 26px;
@@ -239,50 +309,141 @@ ol.debate li.wikipedia>span::before {
     display: block;
 }
 
-/* TOC */
-
-#contents nav a {
-    color: rgba(0, 0, 0, 0.8);
-    border-bottom: none;
-    text-decoration: none;
+/* ****************************************
+ * TOC / Sidebar
+ ******************************************/
+@media (min-height: 900px) {
+  d-article hr {
+    margin-top: 120px !important;
+    margin-bottom: 100px !important;
+  }
 }
 
-#contents nav ul li {
-    margin-bottom: .25em;
+d-article, d-appendix {
+  display: grid;
+  grid-template-columns: 
+    [screen-start] 1fr
+    [page-start kicker-start] 60px 
+    [middle-start] 60px
+    [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 
+    60px [middle-end] 
+    60px [page-end gutter-end] 
+    1fr [screen-end];
+  grid-column-gap: 32px;
 }
 
-#contents nav a:hover {
-    text-decoration: underline solid rgba(0, 0, 0, 0.6);
+@media (max-width: 1300px) {
+  d-contents {
+    display: none;
+  }
+  
+  d-article {
+    padding-left: 0; /* Remove sidebar space when it's hidden */
+  }
 }
 
-#contents nav details ul {
-    margin-top: 0;
+@media (max-width: 1024px) {
+  d-article {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start text-start gutter-start middle-start] repeat(7, 1fr) [text-end page-end gutter-end kicker-end screen-end right-end] 0fr !important;
+  }
 }
 
-#contents nav details > a {
-    margin-left: 1.06em;
+d-article d-contents {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  bottom: 0;
+  width: 260px;
+  margin-left: max(16px, calc((100vw - 1600px) / 2));
+  padding-left: 16px;
+  padding-right: 1em;
+  z-index: 1;
+  background: white;
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: 
+    minmax(8px, 1fr) [toc] auto 
+    minmax(8px, 1fr) [toc-line] 1px
+    minmax(32px, 2fr);
+  contain: layout style;
 }
 
-#contents nav summary,
-#contents nav > div,
-#contents nav details > a {
-    display: block;
-    outline: none;
-    margin-bottom: 0.5em;
+d-article d-contents nav {
+  grid-column: toc;
+  padding-right: 0;
+  padding-left: 0;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
 }
 
-#contents nav > div {
-    margin-left: 1.06em;
+d-article d-contents .toc-line {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  grid-column: toc-line;
 }
 
-#contents nav summary {
-    cursor: context-menu;
+d-contents a:hover {
+  border-bottom: none;
 }
 
-#contents nav summary,
-#contents nav > div > a {
-    font-size: 13px;
-    font-weight: 600;
+d-contents nav h4 {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+d-contents nav div {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+}
+
+d-contents nav a {
+  color: rgba(0, 0, 0, 0.8);
+  border-bottom: none;
+  text-decoration: none;
+}
+
+d-contents li {
+  list-style-type: none;
+}
+
+d-contents ul {
+  padding-left: 1em;
+}
+
+d-contents nav ul li {
+  margin-bottom: 0.25em;
+}
+
+d-contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6);
+}
+
+d-contents nav ul {
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+d-contents nav > div {
+  display: block;
+  outline: none;
+  margin-bottom: 0.5em;
+}
+
+d-contents nav > div > a {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+d-contents nav > div > a:hover,
+d-contents nav > ul > li > a:hover {
+  text-decoration: none;
+}
+
+d-article h2 {
+  border-bottom: none !important;
+}
+
+d-article h3 {
+  font-size: 26px !important;
 }
 
 a.figure-number,
