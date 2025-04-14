@@ -5,6 +5,16 @@
   <style id="distill-article-specific-styles">
     <%= require("raw-loader!./style.css") %>
   </style>
+  <style>
+    /* Override default list styling to prevent double bullets */
+    d-contents ul, d-contents li {
+      list-style-type: none !important;
+    }
+    d-contents li::marker {
+      display: none !important;
+      content: '' !important;
+    }
+  </style>
   <script src="https://distill.pub/template.v2.js"></script>
   <!-- Bundle will be automatically injected here by webpack -->
 </head>
@@ -48,16 +58,21 @@
 <d-article>
   <d-contents>
     <nav class="toc figcaption">
-      <h4>Contents</h4>
-      <div><a href="#overview">An overview of the cool AI Engineering project!</a>
+      <h4>Table of Contents</h4>
+      <div class="toc-section"><a href="#overview">An overview of the cool AI Engineering project!</a>
         <ul>
           <li><a href="#methods">Methods</a></li>
+          <li><a href="#results">Results</a></li>
         </ul>
       </div>
-      <div><a href="#visualization">Full-Width Image Example</a></div>
-      <div><a href="#full-width-demo">Full-Width Interactive Visualization</a></div>
-      <div><a href="#neural-network-viz">Regular Width Interactive Visualization</a></div>
-      <div><a href="#conclusion">Conclusion: How did the project create impact?</a></div>
+      <div class="toc-section"><a href="#visualization">Visualizations</a>
+        <ul>
+          <li><a href="#visualization">Full-Width Image Example</a></li>
+          <li><a href="#full-width-demo">Full-Width Interactive Visualization</a></li>
+          <li><a href="#neural-network-viz">Regular Width Interactive Visualization</a></li>
+        </ul>
+      </div>
+      <div class="toc-section"><a href="#conclusion">Conclusion: How did the project create impact?</a></div>
     </nav>
     <div class="toc-line"></div>
   </d-contents>
@@ -69,6 +84,10 @@
   <h3 id="methods">Methods</h3>
 
   <p>Details on the methods used in the project</p>
+
+  <h3 id="results">Results</h3>
+
+  <p>Key findings and results from our experiments and analysis</p>
 
   <!-- Full width image example -->
   <figure class="l-screen" style="width: 100%; margin: 20px 0; padding: 0;" id="visualization">
