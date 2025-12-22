@@ -53,7 +53,7 @@ d-article > * {
 }
 
 d-figure {
-    contain: layout style; 
+    contain: layout style;
 }
 
 d-figure.base-grid {
@@ -81,13 +81,13 @@ d-appendix h3 {
 
 d-article, d-appendix {
   display: grid;
-  grid-template-columns: 
+  grid-template-columns:
     [screen-start] 1fr
-    [page-start kicker-start] 60px 
+    [page-start kicker-start] 60px
     [middle-start] 60px
-    [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 
-    60px [middle-end] 
-    60px [page-end gutter-end] 
+    [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start]
+    60px [middle-end]
+    60px [page-end gutter-end]
     1fr [screen-end];
   grid-column-gap: 32px;
 }
