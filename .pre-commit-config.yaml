@@ -45,5 +45,5 @@ ci:
   autoupdate_branch: ''
   autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
   autoupdate_schedule: weekly
-  skip: [mypy]
+  skip: [prettier-js-format, nextjs-lint]
   submodules: false
