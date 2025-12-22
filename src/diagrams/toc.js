@@ -26,13 +26,13 @@ export function initCustomTOC() {
       margin-bottom: 10px !important;
       border: none !important;
     }
-    
+
     d-article {
       padding-left: 0 !important;
     }
-    
+
     /* Remove hover effect */
-    
+
     d-contents nav h4 {
       font-size: 1.4em !important;
       color: #333 !important;
@@ -44,17 +44,17 @@ export function initCustomTOC() {
       width: 100% !important;
       text-align: left !important;
     }
-    
+
     d-contents .toc-line {
       display: none !important;
     }
-    
+
     d-contents nav {
       display: block !important;
       width: 100% !important;
       max-width: 100% !important;
     }
-    
+
     d-contents nav > div.toc-section {
       margin-bottom: 0.5em !important;
       padding: 5px 15px !important;
@@ -66,11 +66,11 @@ export function initCustomTOC() {
       background-color: transparent !important;
       box-shadow: none !important;
     }
-    
+
     d-contents nav > div:hover {
       background-color: transparent !important;
     }
-    
+
     d-contents nav > div > a {
       display: block !important;
       font-size: 16px !important;
@@ -82,11 +82,11 @@ export function initCustomTOC() {
       transition: all 0.3s ease !important;
       text-decoration: none !important;
     }
-    
+
     d-contents nav > div > a:hover {
       color: #8e44ad !important;
     }
-    
+
     d-contents ul {
       padding-left: 0 !important;
       margin-top: 3px !important;
@@ -94,7 +94,7 @@ export function initCustomTOC() {
       margin-left: 28px !important;
       list-style: none !important;
     }
-    
+
     d-contents nav ul li {
       margin-bottom: 4px !important;
       position: relative !important;
@@ -102,15 +102,15 @@ export function initCustomTOC() {
       padding: 2px 5px 2px 20px !important;
       border-radius: 0 !important;
     }
-    
+
     d-contents nav ul li::before {
       content: "";
     }
-    
+
     d-contents nav ul li:hover {
       background-color: transparent !important;
     }
-    
+
     d-contents nav a {
       color: #555 !important;
       transition: all 0.3s ease !important;
@@ -118,21 +118,21 @@ export function initCustomTOC() {
       display: block !important;
       text-decoration: none !important;
     }
-    
+
     d-contents nav ul li a {
       color: #555 !important;
     }
-    
+
     d-contents nav ul li:hover a {
       color: #8e44ad !important;
     }
   `;
-  
+
   document.head.appendChild(style);
-  
+
   // Enhance the TOC with section markers and icons
   const tocDivs = tocContainer.querySelectorAll('nav > div');
-  
+
   tocDivs.forEach((div, index) => {
     const sectionNum = index + 1;
     const link = div.querySelector('a');
@@ -141,7 +141,7 @@ export function initCustomTOC() {
       link.innerHTML = `<span style="color: #2c3e50; font-weight: bold; margin-right: 5px;">${sectionNum}.</span> ${originalText}`;
     }
   });
-  
+
   // Fix the double bullet issue for sub-headings with a more aggressive approach
   const fixBullets = () => {
     // Apply a full reset to ensure correct layout
@@ -150,7 +150,7 @@ export function initCustomTOC() {
       section.style.display = 'block';
       section.style.width = '100%';
     });
-    
+
     // Remove all default list styling from ULs
     const allULs = tocContainer.querySelectorAll('ul');
     allULs.forEach(ul => {
@@ -161,7 +161,7 @@ export function initCustomTOC() {
       ul.style.marginBottom = '3px';
       ul.setAttribute('role', 'list'); // For accessibility
     });
-    
+
     // Process each list item to ensure no browser default bullets
     const listItems = tocContainer.querySelectorAll('li');
     listItems.forEach(li => {
@@ -169,10 +169,10 @@ export function initCustomTOC() {
       li.style.listStyleType = 'none';
       li.style.display = 'block';
       li.style.marginBottom = '4px';
-      
+
       // Add a class for specific targeting
       li.classList.add('custom-toc-item');
-      
+
       const link = li.querySelector('a');
       if (link) {
         // Style the link directly
@@ -182,11 +182,11 @@ export function initCustomTOC() {
         link.style.display = 'inline-block';
       }
     });
-    
+
     // Add one more style that will override all bullets
     const extraStyle = document.createElement('style');
     extraStyle.textContent = `
-      d-contents li, 
+      d-contents li,
       d-contents ul li,
       d-contents nav ul li,
       d-contents li::marker,
@@ -198,30 +198,30 @@ export function initCustomTOC() {
         list-style-position: initial !important;
         list-style-image: initial !important;
       }
-      
+
       /* Simple hover effect for links with purple color */
       d-contents a:hover {
         color: #8e44ad !important;
       }
-      
+
       /* Fix for the TOC layout and positioning */
       @media (min-width: 1024px) {
         d-article {
           padding-top: 2rem !important;
         }
-        
+
         d-contents + * {
           margin-top: 2rem !important;
         }
       }
     `;
     document.head.appendChild(extraStyle);
-    
+
     // Add classes for easier styling
     const nav = tocContainer.querySelector('nav');
     if (nav) {
       nav.classList.add('clean-nav-layout');
-      
+
       // Remove any potential borders or styling
       const tocElements = tocContainer.querySelectorAll('*');
       tocElements.forEach(el => {
@@ -234,7 +234,7 @@ export function initCustomTOC() {
       });
     }
   };
-  
+
   // Run the fix immediately and after a short delay to ensure it applies
   // after the browser has rendered the list items
   fixBullets();
