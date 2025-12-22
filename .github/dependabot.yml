@@ -5,7 +5,13 @@
 
 version: 2
 updates:
-  - package-ecosystem: "github-actions" # See documentation for possible values
+  - package-ecosystem: "github-actions"
     directory: "/" # Location of package manifests
     schedule:
-      interval: "weekly"
+      interval: "daily"
+
+  # Keep npm dependencies (package-lock.json) up to date
+  - package-ecosystem: "npm"
+    directory: "/"          # where package.json and package-lock.json live
+    schedule:
+      interval: "daily"
