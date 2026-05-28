@@ -22,7 +22,7 @@
     "raw-loader": "^4.0.2",
     "svg-inline-loader": "^0.8.2",
     "webpack": "^5.107.2",
-    "webpack-cli": "^7.0.2",
+    "webpack-cli": "^7.0.3",
     "webpack-dev-server": "^5.2.4"
   }
 }
